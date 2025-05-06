@@ -7,6 +7,14 @@ public class Pielegniarka implements IPracownik {
     private double zarobki;
     private String password;
 
+    public Pielegniarka(int id, String imie, String nazwisko, double zarobki, String password) {
+        this.id = id;
+        this.imie = imie;
+        this.nazwisko = nazwisko;
+        this.zarobki = zarobki;
+        this.password = password;
+    }
+
     @Override
     public void drukuj_dane() {
         System.out.println("==== DANE PRACOWNIKA: PIELĘGNIARKA ====");

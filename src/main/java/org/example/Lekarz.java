@@ -12,6 +12,15 @@ public class Lekarz implements IPracownik{
     private int reputacja;
     private String password;
 
+    public Lekarz(String imie, int id, String nazwisko, double zarobki, String password, String stanowisko) {
+        this.imie = imie;
+        this.id = id;
+        this.nazwisko = nazwisko;
+        this.zarobki = zarobki;
+        this.password = password;
+        this.stanowisko = stanowisko;
+    }
+
     @Override
     public void drukuj_dane() {
         System.out.println("==== DANE PRACOWNIKA: LEKARZ ====");

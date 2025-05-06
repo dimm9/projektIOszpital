@@ -19,6 +19,10 @@ public class Administrator {
         return zarzadzanie;
     }
 
+    public List<IPracownik> getPracownicy() {
+        return zarzadzanie.getPracownicy();
+    }
+
     public class Zarzadzanie {
         private double budzet;
         private List<Pacjent> pacjenci;
@@ -45,21 +49,30 @@ public class Administrator {
                 return false;
             }
         }
-        void usun_pracownika(int id){
-            pracownicy.remove(Szpital.getById(id, this.pracownicy));
-        }
-        void dodaj_pracownika(IPracownik pracownik){
-            pracownicy.add(pracownik);
-        }
-        void dodaj_pacjenta(Pacjent pacjent, Pomieszczenie pomieszczenie){
-            pacjenci.add(pacjent);
-            pacjent.setSala(pomieszczenie);
-        }
-        void usun_pacjenta(int id){
-            pacjenci.remove(Szpital.getByIdP(id, pacjenci));
-        }
         void kup_nowa_sale(Pomieszczenie pomieszczenie){
             pomieszczenia.add(pomieszczenie);
         }
+    }
+    public void usun_pracownika(int id){
+        zarzadzanie.pracownicy.remove(Szpital.getById(id, zarzadzanie.pracownicy));
+    }
+    public void dodaj_pracownika(IPracownik pracownik){
+        zarzadzanie.pracownicy.add(pracownik);
+    }
+    public void dodaj_pracownika(String imie, int id, String nazwisko, String password, String stanowisko, int LP){
+        IPracownik pracownik;
+        if (LP == 'L') {
+            pracownik = new Lekarz(imie, id, nazwisko, 1000, password, stanowisko);
+        }else{
+            pracownik = new Pielegniarka(id, imie, nazwisko, 500, password);
+        }
+        zarzadzanie.pracownicy.add(pracownik);
+    }
+    public void dodaj_pacjenta(Pacjent pacjent, Pomieszczenie pomieszczenie){
+        zarzadzanie.pacjenci.add(pacjent);
+        pacjent.setSala(pomieszczenie);
+    }
+    public void usun_pacjenta(int id){
+        zarzadzanie.pacjenci.remove(Szpital.getByIdP(id, zarzadzanie.pacjenci));
     }
 }
